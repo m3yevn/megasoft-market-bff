@@ -1,0 +1,26 @@
+{
+  "name": "megasoft-market-bff",
+  "version": "1.0.0",
+  "description": "A bff for Megasoft Market",
+  "main": "src/apps.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "author": "m3yevn",
+  "license": "ISC",
+  "dependencies": {
+    "@techlestial/loglestial": "^1.0.3",
+    "axios": "^1.2.1",
+    "body-parser": "^1.20.1",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "morgan": "^1.10.0",
+    "short-unique-id": "^4.4.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
