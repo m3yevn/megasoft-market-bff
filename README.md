@@ -7,6 +7,9 @@
 
 <hr/>
 
+### To install dependencies
+- Run `npm install` or `yarn install` whichever is convenient
+
 ### To build docker image, and run
 
 - Get .env file from the developer and paste it to the directory
