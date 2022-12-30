@@ -6,21 +6,32 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node src/app.js",
-    "dev": "nodemon src/app.js"
+    "dev": "nodemon src/app.js",
+    "docker-build": "docker build . -t megasoft-market-bff:latest",
+    "docker-image-rm": "docker image rm megasoft-market-bff:latest",
+    "docker-container-rm": "docker rm -f megasoft-market-bff",
+    "docker-run": "docker run -it -p 8000:8000 --rm -d --name megasoft-market-bff megasoft-market-bff:latest"
   },
   "author": "m3yevn",
   "license": "ISC",
   "dependencies": {
     "@techlestial/loglestial": "^1.0.3",
     "axios": "^1.2.1",
+    "bcryptjs": "^2.4.3",
     "body-parser": "^1.20.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.0",
     "morgan": "^1.10.0",
     "short-unique-id": "^4.4.4"
   },
   "devDependencies": {
     "nodemon": "^2.0.20"
-  }
+  },
+  "funFacts": [],
+  "badges": [],
+  "techStacks": [],
+  "publicUrl": "",
+  "screenshots": []
 }

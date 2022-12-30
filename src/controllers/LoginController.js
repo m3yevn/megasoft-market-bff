@@ -3,10 +3,10 @@ const { logger } = require("../logger");
 const loginService = require("../services/login-service");
 
 module.exports = {
-  login: (req, res) => {
+  login: async (req, res) => {
     const { username, password } = req.body;
     const { type } = req.params;
-    const [isMatch, token] = loginService.login(username, password, type);
+    const [isMatch, token] = await loginService.login(username, password, type);
 
     if (!isMatch) {
       const err = new Error("Invalid credentials");

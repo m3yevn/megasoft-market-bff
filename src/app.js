@@ -8,10 +8,7 @@ const morgan = require("morgan");
 const { loggerStream, logger } = require("./logger");
 
 const app = express();
-const port =
-  configService.get("NODE_ENV") === "dev"
-    ? configService.get("DEV_PORT")
-    : configService.get("PROD_PORT");
+const port = configService.get("PORT");
 
 app.listen(port, () => {
   logger.log(`App is listening on ${port}.`);

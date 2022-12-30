@@ -1,34 +1,37 @@
 const users = require("../data/users");
+const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
+const configService = require("./config-service");
 
 class LoginService {
-  login(username, password) {
+  async login(username, password) {
     const user = users[username];
-    const isMatch = user?.password === password;
+    const isMatch = await bcrypt.compare(password, user?.hashedPassword);
     return [
       isMatch,
-      isMatch ? this.#constructToken(username, user.type) : null,
+      isMatch ? this.#signJwt({ username, type: user.type }, "2d") : null,
     ];
   }
 
-  validateToken(token) {
-    const { username } = this.#getAuthUser(token);
-    const user = users[username];
-    return [!!user, user];
-  }
-
-  #getAuthUser = (token) => {
-    const user = {};
-    const dataContents = token.split("|");
-    dataContents.map((dataString) => {
-      const [key, value] = dataString.split("==>");
-      user[key] = value;
+  #signJwt = (payload, expiresIn) => {
+    const token = jwt.sign(payload, configService.get("MM_BFF_SECRET_KEY"), {
+      expiresIn,
     });
-
-    return { ...user };
+    return token;
   };
 
-  #constructToken(username, type) {
-    return `type==>${type}|username==>${username}`;
+  #verifyJwt = (token) => {
+    const decodedData = jwt.verify(
+      token,
+      configService.get("MM_BFF_SECRET_KEY")
+    );
+    return decodedData;
+  };
+
+  validateToken(token) {
+    const { username } = this.#verifyJwt(token);
+    const user = users[username];
+    return [!!user, { username, type: user.type }];
   }
 }
 

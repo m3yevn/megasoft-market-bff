@@ -47,7 +47,7 @@ class TxnService extends AxiosService {
     return {
       external_id: `${username}.${uid()}`,
       product_id: productId,
-      auto_confirm: false,
+      auto_confirm: true,
       credit_party_identifier: creditTo,
     };
   }
