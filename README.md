@@ -7,10 +7,12 @@
 
 <hr/>
 
-### To build docker image
+### To build docker image, and run
 
 - Get .env file from the developer and paste it to the directory
-- Run `npm run docker-build`
+- Run `npm run docker-build` to build docker image
+- Run `npm run docker-run` to run the container and bind to port 8000
+- Run `npm run docker-container-rm` to remove container with force if any issues
 
 ## ⭐ Public Url
 
